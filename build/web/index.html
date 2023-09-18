@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Página Inicial</title>
+</head>
+<body>
+    <h1>Bem-vindo à Página Inicial</h1>
+    <p>Clique no botão abaixo para ver o calendário:</p>
+    <button id="mostrarCalendarioButton">Ver Calendário</button>
+    <div id="calendarioContainer"></div>
+    
+    <script>
+        document.getElementById("mostrarCalendarioButton").addEventListener("click", function() {
+            carregarCalendario();
+        });
+
+        function carregarCalendario() {
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById("calendarioContainer").innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("GET", "calendario.jsp", true);
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
